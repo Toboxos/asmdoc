@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{name}</title>
+        <style>
+            .collapsible {
+                cursor: pointer;
+            }
+
+            .collapsible.active {
+                box-shadow: 0px 3px 0px 0px rgba(0,0,0,0.75);
+            }
+
+            .collapsible:after {
+                content: '+';
+                float: right;
+                transition: transform 0.2s;
+            }
+
+            .collapsible.active:after {
+                transform: rotate(45deg);
+                transition: transform 0.2s;
+            }
+
+            .content {
+                overflow: hidden;
+                transition: max-height 0.2s ease-out;
+                max-height: 0;
+            }
+
+            .function {
+                background: rgb(240, 240, 240);
+                margin-bottom: 0.5em;
+            }
+
+            .fn-def {
+                background-color: #2980b9;
+                color: white;
+                padding: 0.5em;
+                font-size: 1.5em;
+            
+            }
+
+            .fn-desc {
+                color: #34495e;
+                padding: 0.2em;
+                padding-left: 0.5em;
+                font-size: 1.1em;
+            }
+
+            .fn-params {
+                margin-top: 0.3em;
+                padding-left: 0.5em;
+                display: table;
+                
+            }
+
+            .fn-header {
+                font-size: 1.3em;
+                padding-top: 0.5em;
+            }
+
+            .fn-param {
+                padding: 0.2em;
+                display: table-row;
+                border: 1px solid black;
+            }
+
+            .fn-param div {
+                display: table-cell;
+            }
+
+            .fn-param-name {
+                font-weight: bold;
+                padding: 0.4em;
+                padding-left: 0.2em;
+            }
+
+            .fn-param-desc {
+                width: 100%;
+                padding: 0.4em;
+            }
+
+            .fn-param-access {
+                right: 0;
+                font-style: italic;
+                white-space: nowrap;
+                text-align: center;
+                padding: 0.4em;
+            }
+        </style>
+    </head>
+    <body>{html}</body>
+    <script>
+        var coll = document.getElementsByClassName('collapsible');
+
+        for( var i = 0; i < coll.length; ++i ) {
+            coll[i].addEventListener('click', function() {
+                this.classList.toggle("active");
+
+                var content = this.nextElementSibling;
+                content.classList.toggle('active');
+                if( content.style.maxHeight ) {
+                    content.style.maxHeight = null;
+                } else {
+                    content.style.maxHeight = content.scrollHeight + "px";
+                }
+            });
+        }
+    </script>
+</html>

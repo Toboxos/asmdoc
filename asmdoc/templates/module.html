@@ -3,6 +3,29 @@
     <head>
         <title>{name}</title>
         <style>
+            a, a:visited {
+                color: black;
+            }
+
+            #sidebar {
+                width: 220px;
+                float: left;
+            }
+
+            #logo {
+                text-align: center;
+                background: #f1c40f;
+                padding: 1em 0em 1em 0em;
+            }
+
+            #logo h1, #logo h2 {
+                margin: 0;
+            }
+
+            #module {
+                margin-left: 230px;
+            }
+
             .collapsible {
                 cursor: pointer;
             }
@@ -31,6 +54,12 @@
             .function {
                 background: rgb(240, 240, 240);
                 margin-bottom: 0.5em;
+            }
+
+            .fn-filename {
+                font-size: 0.6em;
+                font-style: italic;
+                margin-left: 1.2em;
             }
 
             .fn-def {
@@ -90,7 +119,14 @@
             }
         </style>
     </head>
-    <body>{html}</body>
+    <body>
+        <div id="sidebar">
+            {sidebar}
+        </div>
+        <div id="module">
+            {module}
+        </div>
+    </body>
     <script>
         var coll = document.getElementsByClassName('collapsible');
 

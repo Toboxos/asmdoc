@@ -25,7 +25,7 @@ def getCommand(line):
     arg2 = arg2.replace('\n', '').replace('\r', '')
     return cmd, arg1, arg2
 
-def parseFile(fileHandle):
+def parseFile(fileHandle, fileName):
 
     functions = []
     function = None
@@ -50,7 +50,7 @@ def parseFile(fileHandle):
             # Function defined before
             if function != None:
                 functions.append( function )
-            function = Function(arg1, arg2)
+            function = Function(fileName, arg1, arg2)
 
         elif cmd == "\\param":
             # No function defined before

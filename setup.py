@@ -3,7 +3,7 @@
 from setuptools import setup
 
 setup(  name="asmdoc",
-        version="1.0",
+        version="1.1",
         packages=["asmdoc"],
         scripts=["asmdoc/asmdoc"],
         package_data = {"asmdoc": ["templates/*"]},

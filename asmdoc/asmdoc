@@ -32,6 +32,9 @@ if __name__ == "__main__":
 
     cfg = json.load( open(args.config, "r") )
 
+    if not os.path.exists(cfg['output']):
+        os.mkdir( cfg['output'] )
+
     # all scanned files
     scanned = []
     modules = {}
@@ -58,7 +61,7 @@ if __name__ == "__main__":
                         continue
 
                     scanned.append( filePath )
-                    module, functions = parseFile( open(filePath, "r") )
+                    module, functions = parseFile( open(filePath, "r"), name + ext )
                     if module == None:
                         module = name
 
@@ -71,6 +74,8 @@ if __name__ == "__main__":
         pass # TODO
 
 
+    sidebar = generateSidebar( modules )
+
     for module, functions in modules.items():
         if len(functions) > 0:
-            generateModule(cfg['output'], module, functions)
+            generateModule(cfg['output'], module, functions, sidebar)

@@ -4,6 +4,7 @@ import os
 tplParam = open( os.path.join(os.path.dirname(__file__), "templates/fn-param.html"), "r").read()
 tplFunc = open( os.path.join(os.path.dirname(__file__), "templates/function.html"), "r").read()
 tplModule = open( os.path.join(os.path.dirname(__file__), "templates/module.html"), "r").read()
+tplSidebar = open( os.path.join(os.path.dirname(__file__), "templates/sidebar.html"), "r").read()
 
 def generateFunction(function):
 
@@ -23,7 +24,7 @@ def generateFunction(function):
         definition = definition[:-2] + ")"
     else:
         definition += ")"
-    return tplFunc.replace("{name}", function.name).replace("{description}", function.description).replace("{returns}", function.returns).replace("{params}", params).replace("{definition}", definition)
+    return tplFunc.replace("{name}", function.name).replace("{description}", function.description).replace("{returns}", function.returns).replace("{params}", params).replace("{definition}", definition).replace("{filename}", function.fileName)
 
 def generateFunctions(functions):
     html = ""
@@ -31,9 +32,19 @@ def generateFunctions(functions):
         html += generateFunction(function)
     return html
 
-def generateModule(path, name, functions):
-    html = generateFunctions( functions )
+def generateModule(path, name, functions, sidebar):
+    module = generateFunctions( functions )
 
     f = open(os.path.join(path, name + ".html"), "w")
-    f.write( tplModule.replace("{name}", name).replace("{html}", html) )
+    f.write( tplModule.replace("{name}", name).replace("{module}", module).replace("{sidebar}", sidebar) )
     f.close()
+
+def generateSidebar(modules):
+    mlist = ""
+
+    for module, functions in modules.items():
+        if len(functions) == 0:
+            continue
+        mlist += '<a href="{0}.html"><li>{0}</li></a>'.format(module)
+
+    return tplSidebar.replace("{modules}", mlist)

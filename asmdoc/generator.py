@@ -1,4 +1,4 @@
-from container import Function
+from asmdoc.container import Function
 import os
 
 tplParam = open( os.path.join(os.path.dirname(__file__), "templates/fn-param.html"), "r").read()

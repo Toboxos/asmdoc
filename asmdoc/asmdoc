@@ -1,9 +1,11 @@
+#!/usr/bin/env python
+
 import json
 import os
 import argparse
-from exceptions import ParseException
-from generator import *
-from parser import parseFile
+from asmdoc.exceptions import ParseException
+from asmdoc.generator import *
+from asmdoc.parser import parseFile
 
 DEFAULT_CONFIG = {
     "recursive": True,

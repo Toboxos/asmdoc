@@ -1,5 +1,5 @@
-from exceptions import ParseException
-from container import Function
+from asmdoc.exceptions import ParseException
+from asmdoc.container import Function
 
 def skipWhitespace(line):
     while len(line) > 0 and any(line[0] == c for c in " \t\r\n"):
